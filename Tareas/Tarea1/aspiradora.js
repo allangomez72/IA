@@ -51,7 +51,7 @@ function simular(estados) {
     
     // Verificar si se han alcanzado los 8 estados
     if (estadosVisitados.size >= 8) {
-        document.getElementById("log").innerHTML += "<br><strong>Se han visitado los 8 estados posibles. Simulacion finalizada.</strong>";
+        document.getElementById("log").innerHTML += "<br><strong>Se han visitado los 8 estados posibles. Simulacion finalizada :D</strong>";
         return;
     }
 
