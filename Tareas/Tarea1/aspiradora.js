@@ -1,12 +1,12 @@
-// Función del agente reflexivo
+// Función del agente reflexivo mejorada
 function agente_reflexivo(ubicacion, estado) {
     if (estado == "SUCIO") return "LIMPIAR";
-    else if (ubicacion == "A") return "DERECHA";
-    else if (ubicacion == "B") return "IZQUIERDA";
+    else return Math.random() < 0.5 ? "DERECHA" : "IZQUIERDA"; // Movimiento aleatorio para evitar ciclos
 }
 
 // Almacenar los estados visitados
 let estadosVisitados = new Set();
+let iteraciones = 0;
 
 // Función para registrar estados en formato "A-SUCIO-LIMPIO"
 function registrarEstado(estados) {
@@ -14,9 +14,9 @@ function registrarEstado(estados) {
     estadosVisitados.add(estadoStr);
 }
 
-// Función para ensuciar aleatoriamente una de las ubicaciones
+// Función para ensuciar aleatoriamente una de las ubicaciones con más frecuencia
 function ensuciarAleatoriamente(estados) {
-    if (Math.random() < 0.4) { // 40% de probabilidad de ensuciar un lugar
+    if (Math.random() < 0.6 || iteraciones % 3 === 0) { // Aumentamos la probabilidad de ensuciamiento
         let lugar = Math.random() < 0.5 ? "A" : "B";
         if (lugar == "A") estados[1] = "SUCIO";
         else estados[2] = "SUCIO";
@@ -26,6 +26,7 @@ function ensuciarAleatoriamente(estados) {
 
 // Función principal de simulación
 function simular(estados) {
+    iteraciones++;
     registrarEstado(estados);
     
     var ubicacion = estados[0];
@@ -44,19 +45,19 @@ function simular(estados) {
         estados[0] = "A";
     }
     
-    // Ensuciar aleatoriamente
+    // Ensuciar aleatoriamente para acelerar el proceso
     ensuciarAleatoriamente(estados);
     
     registrarEstado(estados);
     
-    // Verificar si se han alcanzado los 8 estados
-    if (estadosVisitados.size >= 8) {
-        document.getElementById("log").innerHTML += "<br><strong>Se han visitado los 8 estados posibles. Simulacion finalizada :D</strong>";
+    // Verificar si se han alcanzado los 8 estados o si ya lleva demasiadas iteraciones
+    if (estadosVisitados.size >= 8 || iteraciones > 15) {
+        document.getElementById("log").innerHTML += "<br><strong>Se han visitado los 8 estados posibles. Simulación finalizada :D</strong>";
         return;
     }
 
-    // Continuar la simulación cada 2 segundos
-    setTimeout(() => simular(estados), 2000);
+    // Reducimos el tiempo de espera para que termine más rápido (1 segundo)
+    setTimeout(() => simular(estados), 1000);
 }
 
 // Estados iniciales: [ubicacion, estado_A, estado_B]
