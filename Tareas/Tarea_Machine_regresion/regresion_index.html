@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.2/math.min.js"></script>
+</head>
+<body>
+<h2>Linear Regression</h2>
+<!-- Tabla de datos fuente -->
+<div style="width:75%; margin: 0 auto; margin-bottom: 2em;">
+    <h3>Fuente de los datos: <a href="https://www.ine.gob.gt/educacion/" target="_blank">INE Guatemala</a></h3>
+    <table border="1" cellspacing="0" cellpadding="8" style="width:100%; border-collapse: collapse; text-align: center;">
+        <thead style="background-color: #f2f2f2;">
+        <tr>
+            <th>Campo de Estudio</th>
+            <th>Hombre</th>
+            <th>Mujer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr><td>Total</td><td>91,753</td><td>110,015</td></tr>
+        <tr><td>Educación</td><td>2,760</td><td>6,120</td></tr>
+        <tr><td>Humanidades y artes</td><td>736</td><td>595</td></tr>
+        <tr><td>Ciencias sociales, educación comercial y derecho</td><td>36,322</td><td>51,216</td></tr>
+        <tr><td>Ciencias</td><td>1,654</td><td>670</td></tr>
+        <tr><td>Ingeniería, industria y construcción</td><td>28,852</td><td>9,511</td></tr>
+        <tr><td>Agricultura</td><td>1,423</td><td>415</td></tr>
+        <tr><td>Salud y servicios sociales</td><td>9,417</td><td>27,385</td></tr>
+        <tr><td>Servicios</td><td>524</td><td>863</td></tr>
+        <tr><td>Sectores no especificados</td><td>10,065</td><td>13,240</td></tr>
+        </tbody>
+    </table>
+</div>
+<div id="log"></div>
+<div id="chart_div" style="width:75%; margin: 0 auto;"></div>
+<!-- controller -->
+<script type="text/javascript" src="regresion.js"></script>
+</body>
+</html>
